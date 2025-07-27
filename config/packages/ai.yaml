@@ -1,0 +1,18 @@
+# config/packages/ai.yaml
+ai:
+    platform:
+        mistral:
+            api_key: '%env(MISTRAL_API_KEY)%'   # API key lue depuis l’environnement
+    agent:
+        default:
+            platform: Symfony\AI\Platform\PlatformInterface  # injection automatique de la seule plateforme disponible
+            model:
+                class: Symfony\AI\Platform\Bridge\Mistral\Mistral
+                # Les constantes définissent les modèles disponibles (small, medium, large, codestral)
+                name: !php/const Symfony\AI\Platform\Bridge\Mistral\Mistral::MISTRAL_SMALL
+            # vous pouvez définir un prompt système en français
+            system_prompt: 'Vous êtes un assistant utile et répondez en français.'
+            # options du modèle : température, max_tokens, etc.
+            # options:
+            #     temperature: 0.2
+            #     max_tokens: 1024

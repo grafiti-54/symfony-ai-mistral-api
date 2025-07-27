@@ -1,0 +1,21 @@
+{# templates/chat/chat.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Chat Mistral AI{% endblock %}
+
+{% block body %}
+    <h1>Discussion avec Mistral</h1>
+
+    <form method="post" action="{{ path('app_chat') }}">
+        <label for="question">Posez votre question :</label><br>
+        <textarea id="question" name="question" rows="4" cols="60">{{ question|default('') }}</textarea><br>
+        <button type="submit">Envoyer</button>
+    </form>
+
+    {% if answer %}
+        <h2>Réponse :</h2>
+        <div style="white-space: pre-wrap; border: 1px solid #ddd; padding: 10px;">
+            {{ answer }}
+        </div>
+    {% endif %}
+{% endblock %}
